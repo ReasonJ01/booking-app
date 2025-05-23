@@ -1,6 +1,6 @@
 'use client'
 import { usePathname } from "next/navigation";
-import { Home, Calendar, RefreshCcw, User } from 'lucide-react'
+import { Home, Calendar, User } from 'lucide-react'
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 
