@@ -17,9 +17,9 @@ export default function DesktopNavBar() {
     const pathname = usePathname()
 
     return (
-        <header className="sticky top-0 z-50 hidden sm:flex w-full items-center justify-between border-b bg-background px-4 py-2 shadow-sm">
+        <header className="h-16 sticky top-0 z-50 hidden sm:flex w-full items-center justify-between border-b bg-background px-4 shadow-sm">
             <Link href="/" className="text-lg font-semibold">
-                <Image src="/logo.png" alt="Refined by Jessica" width={100} height={64} />
+                <Image src="/logo.png" alt="Refined by Jessica" width={100} height={56} className="h-12 w-auto object-contain" />
             </Link>
 
             <nav className="flex gap-2">
