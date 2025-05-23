@@ -53,8 +53,8 @@ const fadeIn = {
 
 export default function Home() {
   return (
-    <div className="h-[calc(100vh-3rem)] sm:h-[calc(100vh-4rem)] w-full overflow-y-scroll snap-y snap-mandatory">
-      <section className="w-full min-h-[calc(100vh-3rem)] snap-start snap-always bg-gradient-to-b from-background to-secondary text-foreground flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
+    <div className="h-[calc(100vh-4rem)] w-full overflow-y-scroll snap-y snap-mandatory">
+      <section className="w-full h-[calc(100vh-4rem)] snap-start snap-always bg-gradient-to-b from-background via-background to-secondary text-foreground flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -100,8 +100,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="w-full min-h-[calc(100vh-3rem)] snap-start snap-always bg-gradient-to-b from-secondary to-background text-foreground flex flex-col items-center justify-start text-center pt-6 pb-16 sm:pb-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.05),transparent_50%)]" />
+      <section className="w-full h-[calc(100vh-4rem)] snap-start snap-always bg-gradient-to-b from-secondary via-secondary to-background text-foreground flex flex-col items-center justify-start text-center pt-6 pb-16 sm:pb-8 relative overflow-hidden">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -119,7 +118,7 @@ export default function Home() {
             plugins={[autoplay]}>
             <CarouselContent className="-ml-4">
               {images.map((path, i) => (
-                <CarouselItem key={i} className="w-full basis-3/4 lg:basis-1/4 pl-4">
+                <CarouselItem key={i} className="w-full basis-3/4 md:basis-1/2 lg:basis-1/4 pl-4">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
@@ -152,7 +151,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="find-me" className="w-full min-h-[calc(100vh-4rem)] snap-start snap-always bg-gradient-to-b from-background to-secondary text-foreground flex flex-col items-center justify-start text-center pt-4 pb-28 sm:pb-8 relative overflow-hidden">
+      <section id="find-me" className="w-full h-[calc(100vh-4rem)] snap-start snap-always bg-gradient-to-b from-background to-secondary text-foreground flex flex-col items-center justify-start text-center pt-4 pb-28 sm:pb-8 relative overflow-hidden">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
