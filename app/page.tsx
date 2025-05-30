@@ -79,7 +79,7 @@ export default function Home() {
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255, 8, 8, 0.71),transparent_50%)]" />
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="Logo"
             width={400}
             height={400}
