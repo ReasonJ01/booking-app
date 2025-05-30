@@ -60,7 +60,7 @@ export default function Home() {
           animate="visible"
           variants={fadeIn}
           transition={{ duration: 0.8 }}
-          className="flex-1 flex items-center justify-center w-full relative"
+          className="flex-[0.5] flex items-center justify-center w-full relative"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255, 8, 8, 0.71),transparent_50%)]" />
           <Image
