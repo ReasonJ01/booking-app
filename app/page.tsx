@@ -52,7 +52,7 @@ const fadeIn = {
 
 const ScrollIndicator = () => (
   <motion.div
-    className="absolute bottom-8 left-1/2 -translate-x-1/2"
+    className="absolute bottom-16 sm:bottom-8 left-1/2 -translate-x-1/2"
     animate={{
       y: [0, 10, 0],
     }}
