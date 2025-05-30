@@ -51,6 +51,22 @@ const fadeIn = {
   visible: { opacity: 1, y: 0 }
 };
 
+const ScrollIndicator = () => (
+  <motion.div
+    className="absolute bottom-16 sm:bottom-8 left-1/2 -translate-x-1/2"
+    animate={{
+      y: [0, 10, 0],
+    }}
+    transition={{
+      duration: 1.5,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  >
+    <ChevronDown className="w-8 h-8 text-primary/80" />
+  </motion.div>
+);
+
 export default function Home() {
   return (
     <div className="h-[calc(100vh-4rem)] w-full overflow-y-scroll snap-y snap-mandatory">
@@ -98,21 +114,7 @@ export default function Home() {
             Book Now
           </motion.a>
         </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <ChevronDown className="w-8 h-8 text-primary/80" />
-        </motion.div>
+        <ScrollIndicator />
       </section>
 
       <section className="w-full h-[calc(100vh-4rem)] snap-start snap-always bg-gradient-to-b from-secondary via-secondary to-background text-foreground flex flex-col items-center justify-start text-center pt-6 pb-16 sm:pb-8 relative overflow-hidden">
@@ -164,6 +166,7 @@ export default function Home() {
             </p>
           </motion.div>
         </div>
+        <ScrollIndicator />
       </section>
 
       <section id="find-me" className="w-full h-[calc(100vh-4rem)] snap-start snap-always bg-gradient-to-b from-background to-secondary text-foreground flex flex-col items-center justify-start text-center pt-4 pb-28 sm:pb-8 relative overflow-hidden">
@@ -259,6 +262,7 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
+        <ScrollIndicator />
       </section>
 
       <section className="w-full snap-end snap-always bg-gradient-to-b from-secondary via-secondary to-secondary pb-16 sm:pb-0">
