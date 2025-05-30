@@ -8,16 +8,13 @@ const footerLinks = [
     {
         title: 'Policies',
         links: [
-            { name: 'Booking Policy', href: '/booking-policy' },
-            { name: 'Cancellation Policy', href: '/cancellation' },
-            { name: 'Privacy Policy', href: '/privacy' },
+            { name: 'Policies', href: '/policies' },
         ]
     },
     {
         title: 'Services',
         links: [
-            { name: 'Price List', href: '/prices' },
-            { name: 'Gift Cards', href: '/gift-cards' },
+            { name: 'Price List', href: '/price-list' },
             { name: 'Aftercare Guide', href: '/aftercare' },
         ]
     },
