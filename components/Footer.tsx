@@ -14,14 +14,15 @@ const footerLinks = [
     {
         title: 'Services',
         links: [
+            { name: 'Book Now', href: '/book' },
             { name: 'Price List', href: '/price-list' },
             { name: 'Aftercare Guide', href: '/aftercare' },
+
         ]
     },
     {
         title: 'Information',
         links: [
-            { name: 'About Me', href: '/about' },
             {
                 name: 'Location & Hours',
                 href: '#find-me',
