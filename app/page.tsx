@@ -13,7 +13,6 @@ import { ChevronDown, ClockIcon, Mail, MapPin, MessageSquare } from "lucide-reac
 import { SiInstagram, SiFacebook, SiTiktok } from "@icons-pack/react-simple-icons";
 import Footer from "@/components/Footer";
 
-
 const images = ["/cara1.png", "/cara2.png", "/cara1.png", "/cara2.png", "/cara1.png"]
 const socials = [
   {
@@ -53,7 +52,7 @@ const fadeIn = {
 
 const ScrollIndicator = () => (
   <motion.div
-    className="absolute bottom-16 sm:bottom-8 left-1/2 -translate-x-1/2"
+    className="absolute bottom-8 left-1/2 -translate-x-1/2"
     animate={{
       y: [0, 10, 0],
     }}
