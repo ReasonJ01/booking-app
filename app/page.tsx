@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
-import { ClockIcon, Mail, MapPin, MessageSquare } from "lucide-react";
+import { ChevronDown, ClockIcon, Mail, MapPin, MessageSquare } from "lucide-react";
 import { SiInstagram, SiFacebook, SiTiktok } from "@icons-pack/react-simple-icons";
 import Footer from "@/components/Footer";
 
@@ -97,6 +97,21 @@ export default function Home() {
           >
             Book Now
           </motion.a>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{
+            y: [0, 10, 0],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <ChevronDown className="w-8 h-8 text-primary/80" />
         </motion.div>
       </section>
 
