@@ -25,7 +25,7 @@ const footerLinks = [
         links: [
             {
                 name: 'Location & Hours',
-                href: '#find-me',
+                href: '/',
                 scroll: (e: React.MouseEvent<HTMLAnchorElement>) => {
                     e.preventDefault();
                     const element = document.getElementById('find-me');
