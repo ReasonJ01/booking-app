@@ -42,8 +42,8 @@ export function SignUpForm() {
                 throw new Error(result.error.message);
             }
 
-            router.push('/dashboard');
-            router.refresh();
+            // Replace the current route to force a remount
+            router.replace('/dashboard');
         } catch (error) {
             setError(error instanceof Error ? error.message : 'An error occurred');
             setLoading(false);
