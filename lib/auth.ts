@@ -1,10 +1,12 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { prisma } from "./prisma";
+import { PrismaClient } from '@/app/generated/prisma'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
+const prisma = new PrismaClient().$extends(withAccelerate())
 export const auth = betterAuth({
-    adapter: prismaAdapter(prisma, {
-        provider: "postgresql"
+    database: prismaAdapter(prisma, {
+        provider: "postgresql", // or "mysql", "postgresql", ...etc
     }),
     emailAndPassword: {
         enabled: true,
