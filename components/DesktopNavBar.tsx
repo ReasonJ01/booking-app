@@ -6,18 +6,8 @@ import Image from 'next/image'
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { authClient } from '@/lib/auth-client'
-import dynamic from 'next/dynamic'
-
-// Dynamically import the nav components
-const AuthenticatedNav = dynamic(() => import('./nav/AuthenticatedNav').then(mod => mod.AuthenticatedNav), {
-    loading: () => null,
-    ssr: false
-})
-
-const UnauthenticatedNav = dynamic(() => import('./nav/UnauthenticatedNav').then(mod => mod.UnauthenticatedNav), {
-    loading: () => null,
-    ssr: false
-})
+import { AuthenticatedNav } from './nav/AuthenticatedNav'
+import { UnauthenticatedNav } from './nav/UnauthenticatedNav'
 
 // Separate loading state component for better performance
 const LoadingNavBar = () => (

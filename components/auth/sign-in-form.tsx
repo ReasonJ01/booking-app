@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { AlertCircle } from 'lucide-react';
 import {
@@ -12,13 +12,19 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
 
 export function SignInForm() {
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
+    const formRef = useRef<HTMLFormElement>(null);
+
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        // Wait for virtual keyboard to appear
+        setTimeout(() => {
+            e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+    };
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -40,8 +46,8 @@ export function SignInForm() {
                 throw new Error(result.error.message);
             }
 
-            router.push('/dashboard');
-            router.refresh();
+            // Replace the current route to force a remount
+            window.location.href = '/dashboard';
         } catch (error) {
             setError(error instanceof Error ? error.message : 'An error occurred');
             setLoading(false);
@@ -57,7 +63,7 @@ export function SignInForm() {
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-2">
                         <Label className="text-sm" htmlFor="sign-in-email">Email</Label>
                         <Input
@@ -67,6 +73,7 @@ export function SignInForm() {
                             placeholder="john@example.com"
                             className="transition-colors"
                             required
+                            onFocus={handleFocus}
                         />
                     </div>
                     <div className="space-y-2">
@@ -78,6 +85,7 @@ export function SignInForm() {
                             required
                             className="transition-colors"
                             placeholder="Enter your password"
+                            onFocus={handleFocus}
                         />
                     </div>
                     {error && (

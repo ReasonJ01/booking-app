@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { AlertCircle } from 'lucide-react';
 import {
@@ -12,13 +12,19 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
 
 export function SignUpForm() {
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
+    const formRef = useRef<HTMLFormElement>(null);
+
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        // Wait for virtual keyboard to appear
+        setTimeout(() => {
+            e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+    };
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -43,7 +49,7 @@ export function SignUpForm() {
             }
 
             // Replace the current route to force a remount
-            router.replace('/dashboard');
+            window.location.href = '/dashboard';
         } catch (error) {
             setError(error instanceof Error ? error.message : 'An error occurred');
             setLoading(false);
@@ -59,7 +65,7 @@ export function SignUpForm() {
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-2">
                         <Label className="text-sm" htmlFor="sign-up-name">Name</Label>
                         <Input
@@ -69,6 +75,7 @@ export function SignUpForm() {
                             placeholder="John Doe"
                             className="transition-colors"
                             required
+                            onFocus={handleFocus}
                         />
                     </div>
                     <div className="space-y-2">
@@ -80,6 +87,7 @@ export function SignUpForm() {
                             placeholder="john@example.com"
                             className="transition-colors"
                             required
+                            onFocus={handleFocus}
                         />
                     </div>
                     <div className="space-y-2">
@@ -91,6 +99,7 @@ export function SignUpForm() {
                             required
                             className="transition-colors"
                             placeholder="Create a password"
+                            onFocus={handleFocus}
                         />
                     </div>
                     {error && (
