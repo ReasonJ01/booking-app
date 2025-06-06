@@ -1,19 +1,15 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SignInForm } from '@/components/auth/sign-in-form';
 import { SignUpForm } from '@/components/auth/sign-up-form';
 
 export default function AuthPage() {
-    const searchParams = useSearchParams();
-    const defaultTab = searchParams.get('tab') === 'sign-up' ? 'sign-up' : 'sign-in';
-
     return (
         <div className="min-h-[calc(100vh-4rem)] flex items-start">
             <div className="container">
                 <div className="mx-auto w-full max-w-[400px] relative pt-[calc(15vh+3rem)]">
-                    <Tabs defaultValue={defaultTab} className="relative">
+                    <Tabs defaultValue="sign-in" className="relative">
                         <TabsList className="grid w-full grid-cols-2 absolute -top-12 bg-muted/50 p-1">
                             <TabsTrigger
                                 value="sign-in"

@@ -94,7 +94,7 @@ export default function SignInPage() {
             </CardContent>
             <CardFooter className="pb-4 px-4 sm:pb-6">
                 <div className="text-sm text-muted-foreground text-center w-full">
-                    Don't have an account?{' '}
+                    Don&apos;t have an account?{' '}
                     <Link href="/auth/sign-up" className="text-primary hover:underline">
                         Sign up
                     </Link>
