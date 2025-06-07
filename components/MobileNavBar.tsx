@@ -6,7 +6,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 
 const navItems = [
-    { href: '/dashboard', icon: <Home className="h-5 w-5" />, label: 'Dashboard' },
+    { href: '/dashboard', icon: <Home className="h-5 w-5" />, label: 'Home' },
     { href: '/book', icon: <Calendar className="h-5 w-5" />, label: 'Book' },
     { href: '/account', icon: <User className="h-5 w-5" />, label: 'Account' },
 ]
@@ -21,7 +21,7 @@ export default function MobileNavBar() {
                     <Link
                         key={href}
                         href={href}
-                        className={`flex flex-col items-center text-xs ${isActive ? 'text-primary' : 'text-muted-foreground'}`}
+                        className={`flex flex-col items-center justify-center text-xs w-16 h-12 rounded-lg ${isActive ? 'bg-secondary text-secondary-foreground' : 'text-muted-foreground'}`}
                     >
                         {icon}
                         <span>{label}</span>

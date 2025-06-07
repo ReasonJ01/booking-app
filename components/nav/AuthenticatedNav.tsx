@@ -6,7 +6,7 @@ import { UserDropdown } from './UserDropdown'
 
 const navItems = [
     { href: '/book', label: 'Book' },
-    { href: '/dashboard', label: 'Dashboard' },
+    { href: '/dashboard', label: 'Home' },
 ]
 
 interface AuthenticatedNavProps {
