@@ -4,6 +4,8 @@ import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import MobileNavBar from "@/components/MobileNavBar";
 import DesktopNavBar from "@/components/DesktopNavBar";
+import SessionProvider from "@/components/SessionProvider";
+import { authClient } from "@/lib/auth-client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,24 +27,29 @@ export const metadata: Metadata = {
   description: "The home of Refined by Jessica",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const result = await authClient.getSession();
+  const session = result.data?.session ?? null;
+
   return (
     <html lang="en" className="h-full">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased min-h-full flex flex-col`}
       >
-        <header>
-          <DesktopNavBar />
-        </header>
+        <SessionProvider session={session}>
+          <header>
+            <DesktopNavBar />
+          </header>
 
-        <main className="flex-1">
-          {children}
-        </main>
-        <MobileNavBar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <MobileNavBar />
+        </SessionProvider>
       </body>
     </html>
   );
