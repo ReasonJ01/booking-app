@@ -63,7 +63,7 @@ export default function DesktopNavBar() {
                             variant={pathname.startsWith('/dashboard') ? 'default' : 'ghost'}
                             className="text-sm active:scale-95 transition-transform"
                         >
-                            <Link href="/dashboard">Dashboard</Link>
+                            <Link href="/dashboard">Home</Link>
                         </Button>
                         <div className="flex items-center gap-2 ml-2">
                             <UserDropdown onSignOut={handleSignOut} />
