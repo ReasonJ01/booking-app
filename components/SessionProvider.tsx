@@ -1,23 +1,23 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
-import { Session } from "better-auth"; // adjust if needed
+import { createContext, useContext, type ReactNode } from "react";
+import { authClient } from "@/lib/auth-client";
 
-const SessionContext = createContext<Session | null>(null);
+type SessionWithUser = Awaited<ReturnType<typeof authClient.getSession>>["data"];
+
+
+const SessionContext = createContext<SessionWithUser | null>(null);
 
 export function useSession() {
     return useContext(SessionContext);
 }
 
-export default function SessionProvider({
-    session: initialSession,
-    children,
-}: {
-    session: Session | null;
-    children: React.ReactNode;
-}) {
-    const [session] = useState(initialSession);
+interface ProvidersProps {
+    children: ReactNode;
+    session: SessionWithUser | null;
+}
 
+export default function SessionProvider({ children, session }: ProvidersProps) {
     return (
         <SessionContext.Provider value={session}>
             {children}

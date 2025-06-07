@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { Button } from './ui/button'
 
 export function ThemeToggle() {
     const [isDark, setIsDark] = useState(false)
@@ -34,8 +35,8 @@ export function ThemeToggle() {
     }
 
     return (
-        <button onClick={toggleTheme}>
-            {isDark ? '☀️ Light' : '🌙 Dark'}
-        </button>
+        <Button variant="ghost" size="icon" onClick={toggleTheme}>
+            {isDark ? '☀️' : '🌙'}
+        </Button>
     )
 }

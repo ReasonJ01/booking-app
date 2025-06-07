@@ -29,6 +29,8 @@ export default function DesktopNavBar() {
         const checkAuth = async () => {
             try {
                 const session = await authClient.getSession()
+                console.log("session", session)
+                console.log("session.data", !!session.data?.user?.name)
                 if (mounted) {
                     setIsAuthenticated(!!session.data?.user?.name)
                     setIsLoading(false)
