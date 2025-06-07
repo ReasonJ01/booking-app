@@ -55,35 +55,33 @@ export function SignInForm() {
     }
 
     return (
-        <Card className="shadow-none border-none sm:border sm:shadow-sm">
-            <CardHeader className="space-y-1 pb-4">
-                <CardTitle className="text-xl sm:text-2xl text-center">Welcome Back</CardTitle>
-                <CardDescription className="text-center text-base">
+        <Card className="w-full">
+            <CardHeader>
+                <CardTitle className="text-2xl text-center">Welcome Back</CardTitle>
+                <CardDescription className="text-center">
                     Sign in to your account
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-2">
-                        <Label className="text-sm" htmlFor="sign-in-email">Email</Label>
+                        <Label htmlFor="sign-in-email">Email</Label>
                         <Input
                             id="sign-in-email"
                             name="email"
                             type="email"
                             placeholder="john@example.com"
-                            className="transition-colors"
                             required
                             onFocus={handleFocus}
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label className="text-sm" htmlFor="sign-in-password">Password</Label>
+                        <Label htmlFor="sign-in-password">Password</Label>
                         <Input
                             id="sign-in-password"
                             name="password"
                             type="password"
                             required
-                            className="transition-colors"
                             placeholder="Enter your password"
                             onFocus={handleFocus}
                         />
@@ -96,7 +94,7 @@ export function SignInForm() {
                     )}
                     <Button
                         type="submit"
-                        className="w-full font-medium"
+                        className="w-full active:scale-95 transition-transform"
                         disabled={loading}
                     >
                         {loading ? 'Signing in...' : 'Sign in'}

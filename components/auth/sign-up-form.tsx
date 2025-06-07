@@ -57,47 +57,44 @@ export function SignUpForm() {
     }
 
     return (
-        <Card className="shadow-none border-none sm:border sm:shadow-sm">
-            <CardHeader className="space-y-1 pb-4">
-                <CardTitle className="text-xl sm:text-2xl text-center">Create an Account</CardTitle>
-                <CardDescription className="text-center text-base">
+        <Card className="w-full">
+            <CardHeader>
+                <CardTitle className="text-2xl text-center">Create an Account</CardTitle>
+                <CardDescription className="text-center">
                     Enter your details to get started
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-2">
-                        <Label className="text-sm" htmlFor="sign-up-name">Name</Label>
+                        <Label htmlFor="sign-up-name">Name</Label>
                         <Input
                             id="sign-up-name"
                             name="name"
                             type="text"
                             placeholder="John Doe"
-                            className="transition-colors"
                             required
                             onFocus={handleFocus}
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label className="text-sm" htmlFor="sign-up-email">Email</Label>
+                        <Label htmlFor="sign-up-email">Email</Label>
                         <Input
                             id="sign-up-email"
                             name="email"
                             type="email"
                             placeholder="john@example.com"
-                            className="transition-colors"
                             required
                             onFocus={handleFocus}
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label className="text-sm" htmlFor="sign-up-password">Password</Label>
+                        <Label htmlFor="sign-up-password">Password</Label>
                         <Input
                             id="sign-up-password"
                             name="password"
                             type="password"
                             required
-                            className="transition-colors"
                             placeholder="Create a password"
                             onFocus={handleFocus}
                         />
@@ -110,7 +107,7 @@ export function SignUpForm() {
                     )}
                     <Button
                         type="submit"
-                        className="w-full font-medium"
+                        className="w-full active:scale-95 transition-transform"
                         disabled={loading}
                     >
                         {loading ? 'Creating account...' : 'Create account'}

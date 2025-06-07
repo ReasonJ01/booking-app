@@ -12,7 +12,7 @@ export default function DashboardPage() {
     const waitlistPosition = 3;
 
     return (
-        <div className="min-h-screen py-8">
+        <div className="min-h-screen py-8 pb-24 sm:pb-8">
             <div className="container max-w-5xl mx-auto px-4 space-y-8">
                 {/* Next Appointment or Booking CTA */}
                 <Card className="relative overflow-hidden">
@@ -43,11 +43,24 @@ export default function DashboardPage() {
                     <CardFooter className="flex justify-between items-center">
                         {hasUpcomingAppointment ? (
                             <>
-                                <Button variant="outline" className="hover:cursor-pointer">Reschedule</Button>
-                                <Button variant="destructive" className="hover:cursor-pointer">Cancel</Button>
+                                <Button
+                                    variant="outline"
+                                    className="active:scale-95 transition-transform"
+                                >
+                                    Reschedule
+                                </Button>
+                                <Button
+                                    variant="destructive"
+                                    className="active:scale-95 transition-transform"
+                                >
+                                    Cancel
+                                </Button>
                             </>
                         ) : (
-                            <Button asChild className="w-full">
+                            <Button
+                                asChild
+                                className="w-full active:scale-95 transition-transform"
+                            >
                                 <Link href="/book">
                                     <Plus className="mr-2 h-4 w-4" />
                                     Book an Appointment
@@ -74,7 +87,12 @@ export default function DashboardPage() {
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button variant="outline" className="w-full hover:cursor-pointer">Remove from Waitlist</Button>
+                            <Button
+                                variant="outline"
+                                className="w-full active:scale-95 transition-transform"
+                            >
+                                Remove from Waitlist
+                            </Button>
                         </CardFooter>
                     </Card>
                 )}
@@ -84,10 +102,18 @@ export default function DashboardPage() {
                         <CardTitle>Quick Actions</CardTitle>
                     </CardHeader>
                     <CardContent className="grid gap-2 md:grid-cols-2">
-                        <Button asChild variant="outline" className="w-full">
+                        <Button
+                            asChild
+                            variant="outline"
+                            className="w-full active:scale-95 transition-transform"
+                        >
                             <Link href="/book">Book Appointment</Link>
                         </Button>
-                        <Button asChild variant="outline" className="w-full">
+                        <Button
+                            asChild
+                            variant="outline"
+                            className="w-full active:scale-95 transition-transform"
+                        >
                             <Link href="/account">Manage Account</Link>
                         </Button>
                     </CardContent>
@@ -134,7 +160,6 @@ export default function DashboardPage() {
                         </CardContent>
                     </Card>
                 </div>
-
 
             </div>
         </div>
