@@ -68,8 +68,8 @@ const ScrollIndicator = () => (
 
 export default function Home() {
   return (
-    <div className="h-screen sm:h-[calc(100vh-4rem)] w-full overflow-y-scroll snap-y snap-mandatory">
-      <section className="w-full h-full snap-start snap-always bg-gradient-to-b from-background via-background to-secondary text-foreground flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
+    <div className="h-screen sm:h-[calc(100vh-4rem)] w-full overflow-y-scroll">
+      <section className="w-full h-full bg-gradient-to-b from-background via-background to-secondary text-foreground flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -116,7 +116,7 @@ export default function Home() {
         <ScrollIndicator />
       </section>
 
-      <section className="w-full h-full snap-start snap-always bg-gradient-to-b from-secondary via-secondary to-background text-foreground flex flex-col items-center justify-start text-center pt-6 pb-16 sm:pb-8 relative overflow-hidden">
+      <section className="w-full h-full bg-secondary text-foreground flex flex-col items-center justify-start text-center pt-6 pb-16 sm:pb-8 relative overflow-hidden">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -168,7 +168,7 @@ export default function Home() {
         <ScrollIndicator />
       </section>
 
-      <section id="find-me" className="w-full h-full snap-start snap-always bg-gradient-to-b from-background to-secondary text-foreground flex flex-col items-center justify-start text-center pt-4 pb-28 sm:pb-8 relative overflow-hidden">
+      <section id="find-me" className="w-full h-full bg-background text-foreground flex flex-col items-center justify-start text-center pt-4 pb-28 sm:pb-8 relative overflow-hidden">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -264,7 +264,7 @@ export default function Home() {
         <ScrollIndicator />
       </section>
 
-      <section className="w-full snap-end snap-always bg-gradient-to-b from-secondary via-secondary to-secondary pb-16 sm:pb-0">
+      <section className="w-full bg-secondary pb-16 sm:pb-0">
         <Footer />
       </section>
     </div>
