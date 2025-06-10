@@ -53,7 +53,7 @@ export default function DesktopNavBar() {
                     variant={pathname.startsWith('/book') ? 'default' : 'ghost'}
                     className="text-sm active:scale-95 transition-transform"
                 >
-                    <Link href="/book">Book</Link>
+                    <Link href="/book" prefetch={true}>Book</Link>
                 </Button>
 
                 {isAuthenticated ? (
@@ -63,7 +63,7 @@ export default function DesktopNavBar() {
                             variant={pathname.startsWith('/dashboard') ? 'default' : 'ghost'}
                             className="text-sm active:scale-95 transition-transform"
                         >
-                            <Link href="/dashboard">Home</Link>
+                            <Link href="/dashboard" prefetch={true}>Home</Link>
                         </Button>
                         <div className="flex items-center gap-2 ml-2">
                             <UserDropdown onSignOut={handleSignOut} />
@@ -75,7 +75,7 @@ export default function DesktopNavBar() {
                         variant="default"
                         className="active:scale-95 transition-transform"
                     >
-                        <Link href="/auth">Sign In</Link>
+                        <Link href="/auth" prefetch={true}>Sign In</Link>
                     </Button>
                 )}
 
