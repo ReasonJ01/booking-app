@@ -48,7 +48,7 @@ const socialLinks = [
 
 export default function Footer() {
     return (
-        <footer className="bg-transparent text-foreground py-16 px-4 sm:px-6 sm:py-16">
+        <footer className="bg-transparent text-foreground py-8 px-4 sm:px-6 sm:py-12">
             <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12">
                     {footerLinks.map((section) => (
