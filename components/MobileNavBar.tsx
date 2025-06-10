@@ -20,16 +20,17 @@ export default function MobileNavBar() {
     return (
         <nav className="fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 items-center gap-x-3 rounded-full border bg-background p-1 shadow-lg sm:hidden">
             {/* Background indicator that slides */}
-            <motion.div
-                className="absolute h-12 w-16 rounded-full bg-secondary"
-                animate={{ x: activeIndex * (64 + 12) }} // 64px (w-16) + 12px (gap-x-3)
-                transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 30
-                }}
-            />
-
+            {activeIndex !== -1 && (
+                <motion.div
+                    className="absolute h-12 w-16 rounded-full bg-secondary"
+                    animate={{ x: activeIndex * (64 + 12) }} // 64px (w-16) + 12px (gap-x-3)
+                    transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30
+                    }}
+                />
+            )}
             {navItems.map(({ href, icon, label }) => {
                 const isActive = pathname.startsWith(href.split('?')[0])
                 return (
