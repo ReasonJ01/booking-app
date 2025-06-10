@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { LogOutIcon, UserCircle } from 'lucide-react'
+import { ArrowDown, ChevronDown, LogOutIcon, UserCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
     DropdownMenu,
@@ -19,7 +19,7 @@ export function UserDropdown({ onSignOut }: UserDropdownProps) {
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost">
                     <UserCircle className="h-5 w-5" />
-                    Account
+                    Account <ChevronDown className="w-4 h-4" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
