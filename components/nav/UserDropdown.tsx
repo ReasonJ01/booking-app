@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowDown, ChevronDown, LogOutIcon, UserCircle } from 'lucide-react'
+import { ChevronDown, LogOutIcon, UserCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
     DropdownMenu,
