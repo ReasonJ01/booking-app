@@ -25,14 +25,8 @@ const footerLinks = [
         links: [
             {
                 name: 'Location & Hours',
-                href: '/',
-                scroll: (e: React.MouseEvent<HTMLAnchorElement>) => {
-                    e.preventDefault();
-                    const element = document.getElementById('find-me');
-                    if (element) {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
+                href: '/#find-me',
+
             },
             { name: 'FAQs', href: '/faq' },
         ]
@@ -48,7 +42,7 @@ const socialLinks = [
 
 export default function Footer() {
     return (
-        <footer className="bg-transparent text-foreground py-8 px-4 sm:px-6 sm:py-12">
+        <footer className="bg-transparent text-foreground py-8 px-4 sm:px-6 pb-24">
             <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12">
                     {footerLinks.map((section) => (
@@ -59,7 +53,6 @@ export default function Footer() {
                                     <li key={link.name}>
                                         <Link
                                             href={link.href}
-                                            onClick={link.scroll}
                                             className="text-sm text-muted-foreground hover:text-primary transition-colors"
                                         >
                                             {link.name}

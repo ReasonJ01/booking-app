@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Footer from "@/components/Footer";
 
 const aftercareInfo = [
     {
@@ -38,8 +37,6 @@ export default function Aftercare() {
                     ))}
                 </div>
             </div>
-            <Footer />
-            <div className="h-16"></div>
         </div>
     )
 } 

@@ -4,6 +4,7 @@ import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import MobileNavBar from "@/components/MobileNavBar";
 import DesktopNavBar from "@/components/DesktopNavBar";
+import Footer from "@/components/Footer";
 
 // Theme script that runs before page render
 const themeScript = `
@@ -60,6 +61,7 @@ export default async function RootLayout({
           {children}
         </main>
         <MobileNavBar />
+        <Footer />
       </body>
     </html>
   );

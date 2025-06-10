@@ -11,9 +11,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import { ChevronDown, ClockIcon, Mail, MapPin, MessageSquare } from "lucide-react";
 import { SiInstagram, SiFacebook, SiTiktok } from "@icons-pack/react-simple-icons";
-import Footer from "@/components/Footer";
 
-const images = ["/cara1.png", "/cara2.png", "/cara1.png", "/cara2.png", "/cara1.png"]
+const images = ["/cara1.png", "/cara2.png", "/cara1.png", "/cara2.png", "/cara1.png", "/cara1.png", "/cara2.png"]
 const socials = [
   {
     name: 'Instagram',
@@ -52,7 +51,7 @@ const fadeIn = {
 
 const ScrollIndicator = () => (
   <motion.div
-    className="absolute bottom-16 sm:bottom-8 left-1/2 -translate-x-1/2"
+    className="absolute bottom-24 sm:bottom-8 left-1/2 -translate-x-1/2"
     animate={{
       y: [0, 10, 0],
     }}
@@ -134,7 +133,7 @@ export default function Home() {
             plugins={[autoplay]}>
             <CarouselContent className="-ml-4">
               {images.map((path, i) => (
-                <CarouselItem key={i} className="w-full basis-3/4 md:basis-1/2 lg:basis-1/4 pl-4">
+                <CarouselItem key={i} className="w-full basis-3/4 md:basis-1/2 lg:basis-1/5 pl-4">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
@@ -262,10 +261,6 @@ export default function Home() {
           </div>
         </motion.div>
         <ScrollIndicator />
-      </section>
-
-      <section className="w-full snap-end snap-always bg-gradient-to-b from-secondary via-secondary to-secondary pb-16 sm:pb-0">
-        <Footer />
       </section>
     </div>
   );

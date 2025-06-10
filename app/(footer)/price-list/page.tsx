@@ -8,7 +8,6 @@ import {
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { AlertCircle, HelpCircle } from "lucide-react";
-import Footer from "@/components/Footer";
 
 const commonServices = {
     category: "All Services Include",
@@ -255,10 +254,7 @@ export default function PriceList() {
                         </Card>
                     ))}
                 </div>
-                <div className="h-16"></div>
             </div>
-            <Footer />
-            <div className="h-16"></div>
         </div>
 
     )
