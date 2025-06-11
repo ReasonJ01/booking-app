@@ -28,7 +28,8 @@ const footerLinks = [
                 href: '/#find-me',
 
             },
-            { name: 'FAQs', href: '/faq' },
+            { name: 'FAQs', href: '/#faq' },
+            { name: 'Welcome Page', href: '/' },
         ]
     }
 ]
@@ -53,7 +54,7 @@ export default function Footer() {
                                     <li key={link.name}>
                                         <Link
                                             href={link.href}
-                                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                            className="text-sm text-muted-foreground hover:text-primary active:text-primary/80 active:underline active:scale-95 transition-all duration-200 ease-in-out inline-block"
                                         >
                                             {link.name}
                                         </Link>
@@ -72,7 +73,7 @@ export default function Footer() {
                                 href={social.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
+                                className="text-muted-foreground hover:text-primary active:text-primary/80 active:underline active:scale-95 transition-all duration-200 ease-in-out flex items-center gap-2 group"
                                 aria-label={social.name}
                             >
                                 <social.icon className="h-5 w-5" />
