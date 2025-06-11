@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import SessionProvider from "@/components/SessionProvider";
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers"
@@ -16,6 +17,7 @@ export default async function ProtectedLayout({ children }: { children: React.Re
     return (
         <SessionProvider session={session} >
             {children}
+            <Footer />
         </SessionProvider >
     )
 }
