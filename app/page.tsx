@@ -2,20 +2,16 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
+import Link from "next/link";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel"
-import { Card, CardContent } from "@/components/ui/card";
-import Autoplay from "embla-carousel-autoplay";
 import { ClockIcon, Mail, MapPin, MessageSquare } from "lucide-react";
 import { SiInstagram, SiFacebook, SiTiktok } from "@icons-pack/react-simple-icons";
 import Footer from "@/components/Footer";
 import FAQ from "@/components/FAQ";
+import Reviews from "@/components/Reviews";
+import WorkCarousel from "@/components/WorkCarousel";
+import { Card, CardContent } from "@/components/ui/card";
 
-const images = ["/cara1.png", "/cara2.png", "/cara1.png", "/cara2.png", "/cara1.png", "/cara1.png", "/cara2.png"]
 const socials = [
   {
     name: 'Instagram',
@@ -42,10 +38,7 @@ const socials = [
     url: 'mailto:refinedbyjessica@gmail.com',
   },
 ]
-const autoplay = Autoplay({
-  delay: 2000,
-  stopOnInteraction: false
-})
+
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -83,121 +76,77 @@ const ScrollIndicator = () => (
 
 export default function Home() {
   return (
-    <div className="relative">
-      <div className="h-screen sm:h-[calc(100vh-4rem)] w-full overflow-y-scroll snap-y snap-mandatory">
-        <section className="w-full h-full snap-start snap-normal bg-gradient-to-b from-background via-background to-secondary text-foreground flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
+    <div className="min-h-screen">
+      <section className="w-full min-h-screen bg-gradient-to-b from-background via-background to-secondary text-foreground flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ duration: 0.8 }}
+          className="flex-[0.5] flex items-center justify-center w-full relative"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255, 8, 8, 0.71),transparent_50%)]" />
+          <Image
+            src="/logo.svg"
+            alt="Logo"
+            width={400}
+            height={400}
+            className="relative z-10 drop-shadow-xl hover:scale-105 transition-transform duration-500"
+          />
+        </motion.div>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex-1 flex flex-col items-center justify-start"
+        >
+          <h1 className="font-playfair text-3xl font-bold sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+            Flawless Nails.
+            <span className="block mt-2 font-light leading-tight text-2xl sm:text-3xl lg:text-4xl">
+              <span className="inline-block mb-1">Handcrafted.</span>
+              <span className="inline-block mx-1 ">Hypoallergenic.</span>
+              <span className="inline-block mt-1 leading-[1.2] mb-2">Highly You.</span>
+            </span>
+          </h1>
+          <p className="mt-6 max-w-lg text-muted-foreground text-base font-light tracking-wide leading-relaxed">
+            From delicate minimalism to bold statement sets, every look is <span className="font-semibold text-primary transition-colors duration-300 hover:text-primary/80">Refined</span>.
+          </p>
           <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ duration: 0.8 }}
-            className="flex-[0.5] flex items-center justify-center w-full relative"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255, 8, 8, 0.71),transparent_50%)]" />
-            <Image
-              src="/logo.svg"
-              alt="Logo"
-              width={400}
-              height={400}
-              className="relative z-10 drop-shadow-xl hover:scale-105 transition-transform duration-500"
-            />
-          </motion.div>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex-1 flex flex-col items-center justify-start"
-          >
-            <h1 className="font-playfair text-3xl font-bold sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-              Flawless Nails.
-              <span className="block mt-2 font-light leading-tight text-2xl sm:text-3xl lg:text-4xl">
-                <span className="inline-block mb-1">Handcrafted.</span>
-                <span className="inline-block mx-1 ">Hypoallergenic.</span>
-                <span className="inline-block mt-1 leading-[1.2] mb-2">Highly You.</span>
-              </span>
-            </h1>
-            <p className="mt-6 max-w-lg text-muted-foreground text-base font-light tracking-wide leading-relaxed">
-              From delicate minimalism to bold statement sets, every look is <span className="font-semibold text-primary transition-colors duration-300 hover:text-primary/80">Refined</span>.
-            </p>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <Link
               href="/book"
               className="mt-8 inline-block rounded-lg bg-primary px-6 py-3 text-base font-medium tracking-wide text-primary-foreground shadow-lg hover:shadow-primary/25 transition-all duration-300"
             >
               Book Now
-            </motion.a>
-            <ScrollIndicator />
+            </Link>
           </motion.div>
-        </section>
+          <ScrollIndicator />
+        </motion.div>
+      </section>
 
-        <section className="w-full h-full snap-start snap-normal bg-gradient-to-b from-background via-background to-secondary text-foreground flex flex-col items-center justify-start pt-16 relative overflow-hidden">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="font-playfair text-3xl font-bold sm:text-4xl lg:text-5xl relative z-10 mb-4"
-          >
-            Some Of My <span className="font-light">Favourite Work</span>
-          </motion.h1>
+      <section className="w-full min-h-screen bg-background text-foreground flex flex-col items-center justify-start pt-16 relative overflow-hidden">
+        <WorkCarousel />
+        <Card className="border-2 border-primary/30 bg-background/50 backdrop-blur-sm shadow-lg max-w-sm sm:max-w-md mt-12">
+          <CardContent>
+            <p className="text-muted-foreground text-center">With years of experience in nail artistry, I specialize in creating stunning, long-lasting designs that reflect your unique style. From classic elegance to bold statement pieces, every set is crafted with precision and care.</p>
+          </CardContent>
+        </Card>
+      </section>
 
-          <div className="flex flex-col items-center w-full relative z-10">
-            <Carousel className="pt-4 w-full" opts={{
-              align: "center",
-              loop: true,
-            }}
-              plugins={[autoplay]}>
-              <CarouselContent className="-ml-4">
-                {images.map((path, i) => (
-                  <CarouselItem key={i} className="w-full basis-3/4 md:basis-1/2 lg:basis-1/5 pl-4">
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Card className="overflow-hidden rounded-xl p-0 border-none">
-                        <CardContent className="relative aspect-square p-0 shadow-xl">
-                          <Image
-                            src={path}
-                            alt="Nail image"
-                            fill
-                            className="object-cover hover:brightness-110 transition-all duration-300"
-                          />
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-background/95 backdrop-blur-sm border border-ring/20 rounded-xl p-6 mt-6 mx-4 shadow-lg md:max-w-md"
-            >
-              <p className="text-sm leading-relaxed tracking-wide font-light">
-                With years of experience in nail artistry, I specialize in creating stunning, long-lasting designs that reflect your unique style. From classic elegance to bold statement pieces, every set is crafted with precision and care.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        <section className="w-full h-full snap-start snap-normal bg-gradient-to-b from-background to-secondary text-foreground flex flex-col items-center justify-start text-center pt-4 pb-28 sm:pb-8 relative overflow-hidden">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="font-playfair text-3xl font-bold sm:text-4xl lg:text-5xl mb-4 relative z-10"
-          >
-            Where To <span className="font-light">Find Me</span>
-          </motion.h1>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-background/95 backdrop-blur-md py-4 px-6 rounded-xl shadow-lg max-w-sm sm:max-w-md w-full relative z-10 border border-ring/20  transition-colors"
-          >
+      <section className="w-full min-h-screen bg-secondary text-foreground flex flex-col items-center justify-start text-center pt-4 pb-28 sm:pb-8 relative overflow-hidden">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-playfair text-3xl font-bold sm:text-4xl lg:text-5xl mb-4 relative z-10"
+        >
+          Where To <span className="font-light">Find Me</span>
+        </motion.h1>
+        <Card className="border-2 border-primary/30 bg-background/50 backdrop-blur-sm text-foreground shadow-lg w-full max-w-sm sm:max-w-md">
+          <CardContent>
             <div className="space-y-6">
               {/* Location Section */}
               <div>
@@ -275,15 +224,46 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-          </motion.div>
-        </section>
-      </div>
+          </CardContent>
+        </Card>
+      </section>
 
-      <section id="faq" className="w-full h-full bg-gradient-to-b from-secondary via-background to-background text-foreground flex flex-col items-center justify-start pt-16 pb-28 sm:pb-16 relative overflow-hidden">
+      <section className="w-full min-h-screen bg-background text-foreground flex flex-col items-center justify-start pt-16 pb-28 sm:pb-16 relative overflow-hidden">
+        <Reviews />
+      </section>
+
+      <section id="faq" className="w-full min-h-screen bg-secondary text-foreground flex flex-col items-center justify-start pt-16 pb-28 sm:pb-16 relative overflow-hidden">
         <FAQ />
       </section>
 
-      <section className="w-full bg-gradient-to-b from-background via-secondary to-secondary pb-16 sm:pb-0">
+      <section className="w-full bg-background py-24 flex flex-col items-center justify-center text-center px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-playfair text-3xl font-bold sm:text-4xl lg:text-5xl mb-4">
+            Ready for Your <span className="font-light">Next Set?</span>
+          </h2>
+          <p className="text-muted-foreground max-w-md mx-auto mb-8">
+            Book your appointment now and let&apos;s create something beautiful together.
+          </p>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link
+              href="/book"
+              className="inline-block rounded-lg bg-primary px-8 py-4 text-lg font-medium tracking-wide text-primary-foreground shadow-lg hover:shadow-primary/25 transition-all duration-300"
+            >
+              Book Now
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      <section className="w-full bg-background pb-16 sm:pb-0">
         <Footer />
       </section>
     </div>
