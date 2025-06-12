@@ -17,5 +17,15 @@ export const auth = betterAuth({
             enabled: true,
             maxAge: 5 * 60 // Cache for 5 minutes
         }
+    },
+    user: {
+        additionalFields: {
+            role: {
+                type: "string",
+                required: false,
+                defaultValue: "user",
+                input: false, // don't allow user to set role
+            }
+        }
     }
-});
+})
