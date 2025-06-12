@@ -30,14 +30,15 @@ export default function WorkCarousel() {
             </motion.h1>
 
             <div className="flex flex-col items-center w-full">
-                <Carousel className="w-full max-w-5xl" opts={{
+
+                <Carousel className="w-full" opts={{
                     align: "center",
                     loop: true,
                 }}
                     plugins={[autoplay]}>
-                    <CarouselContent>
+                    <CarouselContent className="-ml-6">
                         {images.map((image, index) => (
-                            <CarouselItem key={index} className="basis-3/4 md:basis-3/5 lg:basis-1/2 w-full h-full">
+                            <CarouselItem key={index} className="basis-3/4w-full h-full pl-6">
                                 <div>
                                     <motion.div
                                         whileHover={{ scale: 1.02 }}
@@ -63,6 +64,7 @@ export default function WorkCarousel() {
                     </CarouselContent>
                 </Carousel>
             </div>
+
         </div>
     )
 } 

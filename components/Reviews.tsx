@@ -55,34 +55,40 @@ export default function Reviews() {
             </motion.h1>
 
             <div className="flex flex-col items-center w-full">
-                <Carousel className="w-full max-w-5xl" opts={{
-                    align: "center",
-                    loop: true,
-                }}
-                    plugins={[autoplay]}>
-                    <CarouselContent className="-ml-2 md:-ml-4">
-                        {reviews.map((review, index) => (
-                            <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%] md:basis-1/2">
-                                <div className="p-1">
-                                    <motion.div
-                                        whileHover={{ scale: 1.02 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <Card className="border-2 border-primary/30 bg-background/50 backdrop-blur-sm shadow-lg hover:border-primary/50 transition-colors duration-300">
-                                            <CardContent className="p-6">
-                                                <p className="text-muted-foreground italic mb-4">&ldquo;{review.comment}&rdquo;</p>
-                                                <div className="flex flex-col gap-1">
-                                                    <p className="font-medium text-foreground">{review.name}</p>
-                                                    <p className="text-sm text-muted-foreground">{review.date}</p>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </motion.div>
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                </Carousel>
+                <div className="w-full max-w-5xl relative">
+                    {/* Left opacity gradient overlay for large screens (Tailwind version) */}
+                    <div className="hidden lg:block absolute left-0 top-0 h-full w-40 z-20 pointer-events-none bg-gradient-to-r from-background via-background/80 to-transparent" />
+                    {/* Right opacity gradient overlay for large screens (Tailwind version) */}
+                    <div className="hidden lg:block absolute right-0 top-0 h-full w-40 z-20 pointer-events-none bg-gradient-to-l from-background via-background/80 to-transparent" />
+                    <Carousel className="w-full" opts={{
+                        align: "center",
+                        loop: true,
+                    }}
+                        plugins={[autoplay]}>
+                        <CarouselContent className="-ml-2 md:-ml-4">
+                            {reviews.map((review, index) => (
+                                <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%] md:basis-1/2">
+                                    <div className="p-1">
+                                        <motion.div
+                                            whileHover={{ scale: 1.02 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <Card className="border-2 border-primary/30 bg-background/50 backdrop-blur-sm shadow-lg hover:border-primary/50 transition-colors duration-300">
+                                                <CardContent className="p-6">
+                                                    <p className="text-muted-foreground italic mb-4">&ldquo;{review.comment}&rdquo;</p>
+                                                    <div className="flex flex-col gap-1">
+                                                        <p className="font-medium text-foreground">{review.name}</p>
+                                                        <p className="text-sm text-muted-foreground">{review.date}</p>
+                                                    </div>
+                                                </CardContent>
+                                            </Card>
+                                        </motion.div>
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                    </Carousel>
+                </div>
             </div>
         </div>
     )
