@@ -31,39 +31,42 @@ export default function WorkCarousel() {
             </motion.h1>
 
             <div className="flex flex-col items-center w-full">
+                <div className="w-full max-w-5xl relative">
+                    {/* Left opacity gradient overlay for large screens */}
+                    <div className="hidden lg:block absolute left-0 top-0 h-full w-30 z-20 pointer-events-none bg-gradient-to-r from-background via-background/80 to-transparent" />
+                    {/* Right opacity gradient overlay for large screens */}
+                    <div className="hidden lg:block absolute right-0 top-0 h-full w-30 z-20 pointer-events-none bg-gradient-to-l from-background via-background/80 to-transparent" />
 
-                <Carousel className="w-full" opts={{
-                    align: "center",
-                    loop: true,
-                }}
-                    plugins={[autoplay]}>
-                    <CarouselContent className="-ml-6">
-                        {images.map((image, index) => (
-                            <CarouselItem key={index} className="basis-3/4w-full h-full pl-6">
-                                <div>
-                                    <motion.div
-                                        whileHover={{ scale: 1.02 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <Card className="border-2 border-primary/30 bg-background/50 backdrop-blur-sm shadow-lg hover:border-primary/50 transition-colors duration-300 p-0 rounded-md w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px]">
-                                            <CardContent className="p-0 flex justify-center items-center h-full w-full">
-                                                <div className="w-full h-full relative">
-                                                    <Image
-                                                        src={image}
-                                                        alt="Nail image"
-                                                        fill
-                                                        className="object-cover"
-                                                        sizes="(max-width: 640px) 300px, (max-width: 768px) 400px, 500px"
-                                                    />
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </motion.div>
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                </Carousel>
+                    <Carousel className="w-full" opts={{
+                        align: "center",
+                        loop: true,
+                    }}
+                        plugins={[autoplay]}>
+                        <CarouselContent className="-ml-6">
+                            {images.map((image, index) => (
+                                <CarouselItem key={index} className="basis-3/4w-full h-full pl-6">
+                                    <div>
+                                        <motion.div>
+                                            <Card className="border-2 border-primary/30 bg-background/50 backdrop-blur-sm shadow-lg hover:border-primary/50 transition-colors duration-300 p-0 rounded-lg w-[250px] h-[250px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] overflow-hidden">
+                                                <CardContent className="p-0 flex justify-center items-center h-full w-full">
+                                                    <div className="w-full h-full relative">
+                                                        <Image
+                                                            src={image}
+                                                            alt="Nail image"
+                                                            fill
+                                                            className="object-cover"
+                                                            sizes="(max-width: 640px) 200px, (max-width: 768px) 250px, 300px"
+                                                        />
+                                                    </div>
+                                                </CardContent>
+                                            </Card>
+                                        </motion.div>
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                    </Carousel>
+                </div>
             </div>
 
         </div>
