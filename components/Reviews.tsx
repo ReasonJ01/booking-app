@@ -49,6 +49,7 @@ export default function Reviews() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
                 className="font-playfair text-3xl font-bold sm:text-4xl lg:text-5xl text-center mb-4"
             >
                 Client <span className="font-light">Reviews</span>

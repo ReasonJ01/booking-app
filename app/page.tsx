@@ -83,6 +83,7 @@ export default function Home() {
           animate="visible"
           variants={fadeIn}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="flex-[0.5] flex items-center justify-center w-full relative"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255, 8, 8, 0.71),transparent_50%)]" />
@@ -99,6 +100,7 @@ export default function Home() {
           animate="visible"
           variants={fadeIn}
           transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
           className="flex-1 flex flex-col items-center justify-start"
         >
           <h1 className="font-playfair text-3xl font-bold sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
@@ -141,6 +143,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
           className="font-playfair text-3xl font-bold sm:text-4xl lg:text-5xl mb-4 relative z-10"
         >
           Where To <span className="font-light">Find Me</span>
