@@ -1,4 +1,6 @@
 import { betterAuth } from "better-auth";
+import { admin } from "better-auth/plugins"
+
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/lib/db";
 import * as schema from "@/lib/schema";
@@ -18,14 +20,5 @@ export const auth = betterAuth({
             maxAge: 5 * 60 // Cache for 5 minutes
         }
     },
-    user: {
-        additionalFields: {
-            role: {
-                type: "string",
-                required: false,
-                defaultValue: "user",
-                input: false, // don't allow user to set role
-            }
-        }
-    }
+    plugins: [admin()]
 })

@@ -52,11 +52,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased min-h-full flex flex-col`}
       >
-        <header>
-          <DesktopNavBar />
-        </header>
+        <DesktopNavBar />
 
-        <main className="flex-1">
+        <main className="flex-1 pt-20">
           {children}
 
         </main>
