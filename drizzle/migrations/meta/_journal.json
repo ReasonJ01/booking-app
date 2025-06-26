@@ -15,6 +15,13 @@
       "when": 1749755973513,
       "tag": "0001_hesitant_otto_octavius",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1750939676010,
+      "tag": "0002_remarkable_domino",
+      "breakpoints": true
     }
   ]
 }
