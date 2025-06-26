@@ -24,7 +24,7 @@ function parseMarkdownLinks(text: string) {
         const match = part.match(/\[(.*?)\]\((.*?)\)/);
         if (match) {
             const [, text, url] = match;
-            return <Link key={i} href={url} className="text-primary hover:underline">{text}</Link>;
+            return <Link key={i} href={url} className="text-foreground underline">{text}</Link>;
         }
         return part;
     });
@@ -36,7 +36,11 @@ export default function FAQ() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('/api/faqs')
+        fetch('/api/faqs', {
+            next: {
+                revalidate: 60 * 5
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setFaqs(data);
@@ -50,7 +54,7 @@ export default function FAQ() {
     }, []);
 
     if (isLoading) {
-        return <div className="text-center">Loading FAQs...</div>;
+        return <div className="text-center"></div>;
     }
 
     if (error) {
@@ -71,7 +75,7 @@ export default function FAQ() {
                             className="border-2 border-primary/30 rounded-lg px-6 py-2 bg-background/50 backdrop-blur-sm shadow-md"
                         >
                             <AccordionTrigger className="hover:no-underline py-4">
-                                <span className="font-medium text-left">{faq.question}</span>
+                                <span className="font-semibold text-lg text-left">{faq.question}</span>
                             </AccordionTrigger>
                             <AccordionContent className="text-muted-foreground whitespace-pre-line">
                                 {parseMarkdownLinks(faq.answer)}

@@ -1,9 +1,9 @@
-import { getFaqs } from "@/lib/actions";
+import { getFAQS } from "@/lib/actions";
 import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const faqs = await getFaqs();
+        const faqs = await getFAQS();
         return NextResponse.json(faqs);
     } catch (error) {
         console.error('Failed to fetch FAQs:', error);
