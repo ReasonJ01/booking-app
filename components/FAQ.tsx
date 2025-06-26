@@ -7,6 +7,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type FAQ = {
     id: string;
@@ -16,6 +17,18 @@ type FAQ = {
     createdAt: Date | null;
     updatedAt: Date | null;
 };
+
+function parseMarkdownLinks(text: string) {
+    const parts = text.split(/(\[.*?\]\(.*?\))/g);
+    return parts.map((part, i) => {
+        const match = part.match(/\[(.*?)\]\((.*?)\)/);
+        if (match) {
+            const [, text, url] = match;
+            return <Link key={i} href={url} className="text-primary hover:underline">{text}</Link>;
+        }
+        return part;
+    });
+}
 
 export default function FAQ() {
     const [faqs, setFaqs] = useState<FAQ[]>([]);
@@ -61,7 +74,7 @@ export default function FAQ() {
                                 <span className="font-medium text-left">{faq.question}</span>
                             </AccordionTrigger>
                             <AccordionContent className="text-muted-foreground whitespace-pre-line">
-                                {faq.answer}
+                                {parseMarkdownLinks(faq.answer)}
                             </AccordionContent>
                         </AccordionItem>
                     ))}
