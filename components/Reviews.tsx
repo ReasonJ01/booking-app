@@ -8,41 +8,46 @@ import {
 } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
+import { useEffect, useState } from "react";
+import { review } from "@/lib/schema";
 
-const reviews = [
-    {
-        name: "Sarah Thompson",
-        date: "March 2024",
-        comment: "Jessica is absolutely amazing at what she does! My nails have never looked better. Her attention to detail and precision is outstanding. The salon is so clean and welcoming too!"
-    },
-    {
-        name: "Emma Roberts",
-        date: "February 2024",
-        comment: "I've been going to Jessica for months now and I wouldn't trust anyone else with my nails. Her work is consistently perfect and she's so knowledgeable about nail health."
-    },
-    {
-        name: "Lauren Mitchell",
-        date: "February 2024",
-        comment: "Found my forever nail tech! Jessica takes such care with every detail and the results are always flawless. The designs she creates are exactly what I want every time."
-    },
-    {
-        name: "Rachel Anderson",
-        date: "January 2024",
-        comment: "Such a relaxing experience every time. Jessica is not only talented but also so friendly and professional. My nails last for weeks and always look incredible!"
-    },
-    {
-        name: "Olivia Parker",
-        date: "January 2024",
-        comment: "Best nail experience I've ever had! Jessica is an artist and takes such pride in her work. The hypoallergenic products she uses are perfect for my sensitive skin."
-    }
-];
+type Review = typeof review.$inferSelect;
 
 const autoplay = Autoplay({
     delay: 4000,
     stopOnInteraction: false
 });
 
+
+
 export default function Reviews() {
+    const [reviews, setReviews] = useState<Review[]>([]);
+
+    useEffect(() => {
+        fetch('/api/reviews')
+            .then(res => res.json())
+            .then(setReviews)
+    }, [])
+
+    // Duplicate reviews to ensure at least 5 are shown
+    const getDisplayReviews = () => {
+        if (reviews.length === 0) return [];
+        if (reviews.length >= 5) return reviews;
+
+        const duplicatedReviews = [...reviews];
+        while (duplicatedReviews.length < 5) {
+            const reviewToDuplicate = reviews[duplicatedReviews.length % reviews.length];
+            duplicatedReviews.push({
+                ...reviewToDuplicate,
+                id: `${reviewToDuplicate.id}-duplicate-${duplicatedReviews.length}`,
+                comment: reviewToDuplicate.comment,
+            });
+        }
+        return duplicatedReviews;
+    };
+
+    const displayReviews = getDisplayReviews();
+
     return (
         <div className="w-full relative z-10">
             <motion.h1
@@ -67,7 +72,7 @@ export default function Reviews() {
                     }}
                         plugins={[autoplay]}>
                         <CarouselContent className="-ml-2 md:-ml-4">
-                            {reviews.map((review, index) => (
+                            {displayReviews.map((review, index) => (
                                 <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%] md:basis-1/2">
                                     <div className="p-1">
                                         <motion.div
@@ -79,7 +84,7 @@ export default function Reviews() {
                                                     <p className="text-muted-foreground italic mb-4">&ldquo;{review.comment}&rdquo;</p>
                                                     <div className="flex flex-col gap-1">
                                                         <p className="font-medium text-foreground">{review.name}</p>
-                                                        <p className="text-sm text-muted-foreground">{review.date}</p>
+                                                        <p className="text-sm text-muted-foreground">{review.reviewDate ? new Date(review.reviewDate).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }) : ''}</p>
                                                     </div>
                                                 </CardContent>
                                             </Card>
