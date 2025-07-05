@@ -28,8 +28,8 @@ export default function WorkCarousel() {
                 while (images.length < 5) {
                     images.push(...images)
                 }
-                setImages(images)
             }
+            setImages(images)
         })
     }, [])
     return (
