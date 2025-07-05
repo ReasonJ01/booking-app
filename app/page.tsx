@@ -138,7 +138,7 @@ export default function Home() {
         </Card>
       </section>
 
-      <section className="w-full min-h-screen bg-secondary text-foreground flex flex-col items-center justify-start text-center pt-4 pb-28 sm:pb-8 relative overflow-hidden">
+      <section id="find-me" className="w-full min-h-screen bg-secondary text-foreground flex flex-col items-center justify-start text-center pt-4 pb-28 sm:pb-8 relative overflow-hidden">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
