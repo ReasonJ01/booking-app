@@ -9,8 +9,10 @@ import {
 } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
+import { useEffect, useState } from "react";
+import { image } from "@/lib/schema";
 
-const images = ["/cara1.png", "/cara2.png", "/cara1.png", "/cara2.png", "/cara1.png", "/cara1.png", "/cara2.png"]
+type Image = typeof image.$inferSelect;
 
 const autoplay = Autoplay({
     delay: 2000,
@@ -18,6 +20,18 @@ const autoplay = Autoplay({
 });
 
 export default function WorkCarousel() {
+    const [images, setImages] = useState<Image[]>([]);
+
+    useEffect(() => {
+        fetch("/api/images").then(res => res.json()).then(images => {
+            if (images.length < 5) {
+                while (images.length < 5) {
+                    images.push(...images)
+                }
+                setImages(images)
+            }
+        })
+    }, [])
     return (
         <div className="w-full relative z-10">
             <motion.h1
@@ -51,7 +65,7 @@ export default function WorkCarousel() {
                                                 <CardContent className="p-0 flex justify-center items-center h-full w-full">
                                                     <div className="w-full h-full relative">
                                                         <Image
-                                                            src={image}
+                                                            src={image.url}
                                                             alt="Nail image"
                                                             fill
                                                             className="object-cover"

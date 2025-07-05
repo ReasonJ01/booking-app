@@ -15,3 +15,17 @@ export const getReviews = async () => {
     });
     return reviews;
 }
+
+export const getImages = async () => {
+    try {
+        const images = await db.query.image.findMany({
+            where: (image, { eq }) => eq(image.carousel, true),
+            orderBy: (image, { desc }) => [desc(image.createdAt)]
+        });
+        return images;
+    } catch (error) {
+        console.error("Failed to fetch images", error);
+        return [];
+    }
+
+}
