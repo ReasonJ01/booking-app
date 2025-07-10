@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
@@ -238,6 +238,11 @@ export default function BookingFlow() {
     const [selectedServices, setSelectedServices] = useState<SelectedOption[]>([]);
     const [previousQuestions, setPreviousQuestions] = useState<string[]>([]);
     const [direction, setDirection] = useState<number>(1);
+
+    // Reset scroll position when question changes
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [currentQuestion]);
 
     if (currentQuestion === "final") {
         return <BookingFlowSummary selectedServices={selectedServices} onChange={handleChange} />;
