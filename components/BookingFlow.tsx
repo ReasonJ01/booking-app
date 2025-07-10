@@ -152,7 +152,7 @@ export default function BookingFlow() {
     }
 
 
-    return <div className="flex flex-col items-center pt-0 sm:pt-16 h-screen gap-4 w-full max-w-md mx-auto px-4">
+    return <div className="flex flex-col items-center pt-8 sm:pt-16 h-screen gap-4 w-full max-w-md mx-auto px-4">
 
         <AnimatePresence mode="wait" initial={false}>
             <motion.div

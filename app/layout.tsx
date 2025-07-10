@@ -54,7 +54,7 @@ export default async function RootLayout({
       >
         <DesktopNavBar />
 
-        <main className="flex-1 pt-20">
+        <main className="flex-1 pt-0 sm:pt-20">
           {children}
 
         </main>
