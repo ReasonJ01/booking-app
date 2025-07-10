@@ -152,7 +152,7 @@ export default function BookingFlow() {
     }
 
 
-    return <div className="flex flex-col items-center pt-16 h-screen gap-4 w-full max-w-md mx-auto px-4" style={{ overflow: 'hidden' }}>
+    return <div className="flex flex-col items-center pt-0 sm:pt-16 h-screen gap-4 w-full max-w-md mx-auto px-4">
 
         <AnimatePresence mode="wait" initial={false}>
             <motion.div
@@ -160,7 +160,7 @@ export default function BookingFlow() {
                 initial={{ opacity: 0, x: direction * 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: direction * -40 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
+                transition={{ duration: 0.15, ease: "easeInOut" }}
                 className="w-full flex flex-col gap-4"
             >
                 <h1 className="text-2xl font-bold text-center mb-2">{currentQuestionData.text}</h1>

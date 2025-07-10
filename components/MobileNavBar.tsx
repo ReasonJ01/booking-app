@@ -25,6 +25,7 @@ export default function MobileNavBar() {
                     className="absolute h-12 w-16 rounded-full bg-secondary"
                     animate={{ x: activeIndex * (64 + 12) }} // 64px (w-16) + 12px (gap-x-3)
                     transition={{
+                        duration: 0.15,
                         type: "spring",
                         stiffness: 400,
                         damping: 30
