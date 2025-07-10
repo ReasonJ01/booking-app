@@ -9,72 +9,208 @@ import BookingFlowSummary from "./BookingFlowSummary";
 const bookingData =
 {
     "start": {
-        "text": "What are you booking today?",
+        "text": "What would you like to book?",
         "options": [
             {
                 "optionTitle": "Full Set",
                 "summaryTitle": "Full Set",
-                "description": "Complete new set of nails",
-                "services": ["full-set"],
-                "image": "https://example.com/images/full-set.jpg",
-                "next": "q2"
+                "description": "New set with or without removal",
+                "services": [],
+                "next": "q1a"
             },
             {
                 "optionTitle": "Infill",
                 "summaryTitle": "Infill",
-                "description": "Fill in grown-out areas",
-                "services": ["infill"],
-                "tag": "Most Popular",
-                "image": "https://example.com/images/infill.jpg",
+                "description": "Maintenance for existing sets",
+                "services": [],
                 "next": "q3"
+            },
+            {
+                "optionTitle": "Rebalance",
+                "summaryTitle": "Rebalance",
+                "description": "For sets older than 4 weeks needing refresh",
+                "services": [],
+                "next": "q4"
+            },
+            {
+                "optionTitle": "Removal Only",
+                "summaryTitle": "Removal Only",
+                "description": "Book just a removal without other services",
+                "services": [],
+                "next": "q8"
+            }
+        ]
+    },
+    "q1a": {
+        "text": "Do you currently have any product on your nails?",
+        "options": [
+            {
+                "optionTitle": "Yes",
+                "summaryTitle": "Add Removal",
+                "description": "Add a removal before applying new set",
+                "services": [],
+                "next": "q2a"
+            },
+            {
+                "optionTitle": "No",
+                "summaryTitle": "No Removal Needed",
+                "description": "Starting on bare nails",
+                "services": [],
+                "next": "q2"
+            }
+        ]
+    },
+    "q2a": {
+        "text": "What type of removal do you need?",
+        "options": [
+            {
+                "optionTitle": "My work",
+                "summaryTitle": "Removal of My Work",
+                "description": "Removing product previously applied by this salon",
+                "services": ["removal-inhouse"],
+                "next": "q2"
+            },
+            {
+                "optionTitle": "Other salon",
+                "summaryTitle": "Removal of Other Work",
+                "description": "Removing product applied elsewhere",
+                "services": ["removal-external"],
+                "next": "q2"
             }
         ]
     },
     "q2": {
-        "text": "Do you have existing product on your nails?",
+        "text": "Choose your Full Set type",
         "options": [
             {
-                "optionTitle": "Yes",
-                "summaryTitle": "Removal",
-                "description": "Existing extensions or gel needs removing",
-                "services": ["removal"],
-                "image": "https://example.com/images/removal.jpg",
-                "next": "q3"
+                "optionTitle": "Builder Gel",
+                "summaryTitle": "Builder Gel Full Set",
+                "description": "Strong, flexible overlay for natural nails",
+                "services": ["bg-full-set"],
+                "next": "q7"
             },
             {
-                "optionTitle": "No",
-                "summaryTitle": "No Removal",
-                "description": "Fresh nails with no prior product",
-                "services": [],
-                "image": "https://example.com/images/no-removal.jpg",
-                "next": "q3"
+                "optionTitle": "Hard Gel",
+                "summaryTitle": "Hard Gel Full Set",
+                "description": "Durable option for longer nails or heavy use",
+                "services": ["hg-full-set"],
+                "next": "q7"
+            },
+            {
+                "optionTitle": "Full Cover Extensions",
+                "summaryTitle": "Full Cover Extensions",
+                "description": "Pre-formed tips for instant length",
+                "services": ["fc-full-set"],
+                "next": "q7"
             }
         ]
     },
     "q3": {
-        "text": "What level of design complexity do you want?",
+        "text": "Choose your Infill type",
         "options": [
             {
-                "optionTitle": "Simple",
-                "summaryTitle": "Simple Design",
-                "description": "Minimal or plain designs",
-                "services": ["design-simple"],
-                "tag": "Quickest",
-                "image": "https://example.com/images/simple-design.jpg",
+                "optionTitle": "Builder Gel Infill",
+                "summaryTitle": "Builder Gel Infill",
+                "description": "Maintenance for BG nails",
+                "services": ["bg-infill"],
+                "next": "q7"
+            },
+            {
+                "optionTitle": "Hard Gel Infill",
+                "summaryTitle": "Hard Gel Infill",
+                "description": "Maintenance for HG nails",
+                "services": ["hg-infill"],
+                "next": "q7"
+            }
+        ]
+    },
+    "q4": {
+        "text": "Choose your Rebalance type",
+        "options": [
+            {
+                "optionTitle": "Builder Gel Rebalance",
+                "summaryTitle": "Builder Gel Rebalance",
+                "description": "Full rework for BG sets >4 weeks old",
+                "services": ["bg-rebalance"],
+                "next": "q7"
+            },
+            {
+                "optionTitle": "Hard Gel Rebalance",
+                "summaryTitle": "Hard Gel Rebalance",
+                "description": "Full rework for HG sets >4 weeks old",
+                "services": ["hg-rebalance"],
+                "next": "q7"
+            }
+        ]
+    },
+    "q7": {
+        "text": "Would you like to add nail art?",
+        "options": [
+            {
+                "optionTitle": "No Nail Art",
+                "summaryTitle": "No Additional Design",
+                "description": "Simple solid finish",
+                "services": [],
                 "next": "final"
             },
             {
-                "optionTitle": "Detailed",
-                "summaryTitle": "Detailed Design",
-                "description": "Intricate patterns or nail art",
-                "services": ["design-detailed"],
-                "tag": "Best Seller",
-                "image": "https://example.com/images/detailed-design.jpg",
+                "optionTitle": "Bronze Tier",
+                "summaryTitle": "Bronze Tier Nail Art",
+                "description": "French, Chrome, Dots, etc.",
+                "services": ["tier-bronze"],
+                "next": "final"
+            },
+            {
+                "optionTitle": "Silver Tier",
+                "summaryTitle": "Silver Tier Nail Art",
+                "description": "Stars, Flowers, Animal print",
+                "services": ["tier-silver"],
+                "next": "final"
+            },
+            {
+                "optionTitle": "Gold Tier",
+                "summaryTitle": "Gold Tier Nail Art",
+                "description": "Combined/mismatched designs",
+                "services": ["tier-gold"],
+                "next": "final"
+            },
+            {
+                "optionTitle": "Platinum Tier",
+                "summaryTitle": "Platinum Tier Nail Art",
+                "description": "3D/Line Work/Advanced detail",
+                "services": ["tier-platinum"],
+                "next": "final"
+            },
+            {
+                "optionTitle": "Custom",
+                "summaryTitle": "Custom Design",
+                "description": "Extreme or bespoke art",
+                "services": ["tier-custom"],
+                "next": "final"
+            }
+        ]
+    },
+    "q8": {
+        "text": "What type of removal do you need?",
+        "options": [
+            {
+                "optionTitle": "My work",
+                "summaryTitle": "Removal of My Work",
+                "description": "Removing product previously applied by this salon",
+                "services": ["removal-inhouse"],
+                "next": "final"
+            },
+            {
+                "optionTitle": "Other salon",
+                "summaryTitle": "Removal of Other Work",
+                "description": "Removing product applied elsewhere",
+                "services": ["removal-external"],
                 "next": "final"
             }
         ]
     }
 }
+
 
 export interface Option {
     optionTitle: string;
@@ -152,7 +288,7 @@ export default function BookingFlow() {
     }
 
 
-    return <div className="flex flex-col items-center pt-8 sm:pt-16 h-screen gap-4 w-full max-w-md mx-auto px-4">
+    return <div className="flex flex-col items-center pt-8 sm:pt-16 min-h-screen gap-4 w-full max-w-md mx-auto px-4" style={{ overflow: 'hidden' }}>
 
         <AnimatePresence mode="wait" initial={false}>
             <motion.div
