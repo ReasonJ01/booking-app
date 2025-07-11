@@ -3,5 +3,4 @@ Built with NextJS, shadcn/ui and hosted on Vercel with Supabase for Postgres.
 
 Much of the information on the site is placeholder text for now. 
 
-Probably available at (https://booking-app-three-wheat.vercel.app/)[https://booking-app-three-wheat.vercel.app/]
-
+Probably available at [https://booking-app-three-wheat.vercel.app/](https://booking-app-three-wheat.vercel.app/)
