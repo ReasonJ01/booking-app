@@ -4,6 +4,7 @@ import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import MobileNavBar from "@/components/MobileNavBar";
 import DesktopNavBar from "@/components/DesktopNavBar";
+import QueryProvider from "@/components/QueryProvider";
 
 // Theme script that runs before page render
 const themeScript = `
@@ -52,13 +53,15 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased min-h-full flex flex-col`}
       >
-        <DesktopNavBar />
+        <QueryProvider>
+          <DesktopNavBar />
 
-        <main className="flex-1 pt-0 sm:pt-20">
-          {children}
+          <main className="flex-1 pt-0 sm:pt-20">
+            {children}
 
-        </main>
-        <MobileNavBar />
+          </main>
+          <MobileNavBar />
+        </QueryProvider>
       </body>
     </html>
   );

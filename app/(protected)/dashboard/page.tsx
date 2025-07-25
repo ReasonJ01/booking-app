@@ -1,11 +1,20 @@
 'use client';
 
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, Clock, Heart, History, Plus, Star, Users } from "lucide-react";
 import Link from "next/link";
+import { usePrefetchBookingFlow } from "@/lib/queries";
 
 export default function DashboardPage() {
+    const prefetchBookingFlow = usePrefetchBookingFlow();
+
+    // Prefetch booking flow data when dashboard loads
+    useEffect(() => {
+        prefetchBookingFlow();
+    }, [prefetchBookingFlow]);
+
     // Mock data - replace with real data later
     const hasUpcomingAppointment = true;
     const isOnWaitlist = true;

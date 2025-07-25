@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 
 import { ClockIcon, Mail, MapPin, MessageSquare } from "lucide-react";
@@ -11,6 +11,7 @@ import FAQ from "@/components/FAQ";
 import Reviews from "@/components/Reviews";
 import WorkCarousel from "@/components/WorkCarousel";
 import { Card, CardContent } from "@/components/ui/card";
+import { usePrefetchBookingFlow } from "@/lib/queries";
 
 const socials = [
   {
@@ -75,6 +76,13 @@ const ScrollIndicator = () => (
 );
 
 export default function Home() {
+  const prefetchBookingFlow = usePrefetchBookingFlow();
+
+  // Prefetch booking flow data when homepage loads
+  useEffect(() => {
+    prefetchBookingFlow();
+  }, [prefetchBookingFlow]);
+
   return (
     <div className="min-h-screen">
       <section className="w-full min-h-screen bg-gradient-to-b from-background via-background to-secondary text-foreground flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">

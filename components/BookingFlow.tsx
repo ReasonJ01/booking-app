@@ -2,215 +2,26 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import BookingFlowSummary from "./BookingFlowSummary";
+import { InferSelectModel } from "drizzle-orm";
+import { bookingFlowQuestion, bookingFlowOption, service } from "@/lib/schema";
+import { useBookingFlow } from "@/lib/queries";
 
-const bookingData =
-{
-    "start": {
-        "text": "What would you like to book?",
-        "options": [
-            {
-                "optionTitle": "Full Set",
-                "summaryTitle": "Full Set",
-                "description": "New set with or without removal",
-                "services": [],
-                "next": "q1a"
-            },
-            {
-                "optionTitle": "Infill",
-                "summaryTitle": "Infill",
-                "description": "Maintenance for existing sets",
-                "services": [],
-                "next": "q3"
-            },
-            {
-                "optionTitle": "Rebalance",
-                "summaryTitle": "Rebalance",
-                "description": "For sets older than 4 weeks needing refresh",
-                "services": [],
-                "next": "q4"
-            },
-            {
-                "optionTitle": "Removal Only",
-                "summaryTitle": "Removal Only",
-                "description": "Book just a removal without other services",
-                "services": [],
-                "next": "q8"
-            }
-        ]
-    },
-    "q1a": {
-        "text": "Do you currently have any product on your nails?",
-        "options": [
-            {
-                "optionTitle": "Yes",
-                "summaryTitle": "Add Removal",
-                "description": "Add a removal before applying new set",
-                "services": [],
-                "next": "q2a"
-            },
-            {
-                "optionTitle": "No",
-                "summaryTitle": "No Removal Needed",
-                "description": "Starting on bare nails",
-                "services": [],
-                "next": "q2"
-            }
-        ]
-    },
-    "q2a": {
-        "text": "What type of removal do you need?",
-        "options": [
-            {
-                "optionTitle": "My work",
-                "summaryTitle": "Removal of My Work",
-                "description": "Removing product previously applied by this salon",
-                "services": ["removal-inhouse"],
-                "next": "q2"
-            },
-            {
-                "optionTitle": "Other salon",
-                "summaryTitle": "Removal of Other Work",
-                "description": "Removing product applied elsewhere",
-                "services": ["removal-external"],
-                "next": "q2"
-            }
-        ]
-    },
-    "q2": {
-        "text": "Choose your Full Set type",
-        "options": [
-            {
-                "optionTitle": "Builder Gel",
-                "summaryTitle": "Builder Gel Full Set",
-                "description": "Strong, flexible overlay for natural nails",
-                "services": ["bg-full-set"],
-                "next": "q7"
-            },
-            {
-                "optionTitle": "Hard Gel",
-                "summaryTitle": "Hard Gel Full Set",
-                "description": "Durable option for longer nails or heavy use",
-                "services": ["hg-full-set"],
-                "next": "q7"
-            },
-            {
-                "optionTitle": "Full Cover Extensions",
-                "summaryTitle": "Full Cover Extensions",
-                "description": "Pre-formed tips for instant length",
-                "services": ["fc-full-set"],
-                "next": "q7"
-            }
-        ]
-    },
-    "q3": {
-        "text": "Choose your Infill type",
-        "options": [
-            {
-                "optionTitle": "Builder Gel Infill",
-                "summaryTitle": "Builder Gel Infill",
-                "description": "Maintenance for BG nails",
-                "services": ["bg-infill"],
-                "next": "q7"
-            },
-            {
-                "optionTitle": "Hard Gel Infill",
-                "summaryTitle": "Hard Gel Infill",
-                "description": "Maintenance for HG nails",
-                "services": ["hg-infill"],
-                "next": "q7"
-            }
-        ]
-    },
-    "q4": {
-        "text": "Choose your Rebalance type",
-        "options": [
-            {
-                "optionTitle": "Builder Gel Rebalance",
-                "summaryTitle": "Builder Gel Rebalance",
-                "description": "Full rework for BG sets >4 weeks old",
-                "services": ["bg-rebalance"],
-                "next": "q7"
-            },
-            {
-                "optionTitle": "Hard Gel Rebalance",
-                "summaryTitle": "Hard Gel Rebalance",
-                "description": "Full rework for HG sets >4 weeks old",
-                "services": ["hg-rebalance"],
-                "next": "q7"
-            }
-        ]
-    },
-    "q7": {
-        "text": "Would you like to add nail art?",
-        "options": [
-            {
-                "optionTitle": "No Nail Art",
-                "summaryTitle": "No Additional Design",
-                "description": "Simple solid finish",
-                "services": [],
-                "next": "final"
-            },
-            {
-                "optionTitle": "Bronze Tier",
-                "summaryTitle": "Bronze Tier Nail Art",
-                "description": "French, Chrome, Dots, etc.",
-                "services": ["tier-bronze"],
-                "next": "final"
-            },
-            {
-                "optionTitle": "Silver Tier",
-                "summaryTitle": "Silver Tier Nail Art",
-                "description": "Stars, Flowers, Animal print",
-                "services": ["tier-silver"],
-                "next": "final"
-            },
-            {
-                "optionTitle": "Gold Tier",
-                "summaryTitle": "Gold Tier Nail Art",
-                "description": "Combined/mismatched designs",
-                "services": ["tier-gold"],
-                "next": "final"
-            },
-            {
-                "optionTitle": "Platinum Tier",
-                "summaryTitle": "Platinum Tier Nail Art",
-                "description": "3D/Line Work/Advanced detail",
-                "services": ["tier-platinum"],
-                "next": "final"
-            },
-            {
-                "optionTitle": "Custom",
-                "summaryTitle": "Custom Design",
-                "description": "Extreme or bespoke art",
-                "services": ["tier-custom"],
-                "next": "final"
-            }
-        ]
-    },
-    "q8": {
-        "text": "What type of removal do you need?",
-        "options": [
-            {
-                "optionTitle": "My work",
-                "summaryTitle": "Removal of My Work",
-                "description": "Removing product previously applied by this salon",
-                "services": ["removal-inhouse"],
-                "next": "final"
-            },
-            {
-                "optionTitle": "Other salon",
-                "summaryTitle": "Removal of Other Work",
-                "description": "Removing product applied elsewhere",
-                "services": ["removal-external"],
-                "next": "final"
-            }
-        ]
-    }
-}
+// Infer types from schema
+type BookingFlowQuestion = InferSelectModel<typeof bookingFlowQuestion>;
+type BookingFlowOption = InferSelectModel<typeof bookingFlowOption>;
+type Service = InferSelectModel<typeof service>;
 
+// Extended types for the booking flow data
+type OptionWithServices = BookingFlowOption & {
+    services: Service[];
+};
+
+type QuestionWithOptions = BookingFlowQuestion & {
+    options: OptionWithServices[];
+};
 
 export interface Option {
     optionTitle: string;
@@ -238,21 +49,73 @@ export default function BookingFlow() {
     const [selectedServices, setSelectedServices] = useState<SelectedOption[]>([]);
     const [previousQuestions, setPreviousQuestions] = useState<string[]>([]);
     const [direction, setDirection] = useState<number>(1);
+    const [bookingData, setBookingData] = useState<Record<string, QuestionWithOptions>>({});
+
+    // Use TanStack Query to fetch booking flow data
+    const { data: rawBookingData, isLoading, error } = useBookingFlow();
+
+    // Transform the data when it's fetched
+    useEffect(() => {
+        if (rawBookingData) {
+            const transformedData: Record<string, QuestionWithOptions> = {};
+
+            rawBookingData.forEach((question: QuestionWithOptions) => {
+                transformedData[question.id] = {
+                    ...question,
+                    options: question.options.map((option: OptionWithServices) => ({
+                        ...option,
+                        services: option.services
+                    }))
+                };
+            });
+
+            setBookingData(transformedData);
+        }
+    }, [rawBookingData]);
 
     // Reset scroll position when question changes
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [currentQuestion]);
 
+    if (isLoading) {
+        return (
+            <div className="flex flex-col items-center pt-8 sm:pt-16 min-h-screen gap-4 w-full max-w-md mx-auto px-4">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                    <p className="mt-4 text-muted-foreground">Loading booking options...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex flex-col items-center pt-8 sm:pt-16 min-h-screen gap-4 w-full max-w-md mx-auto px-4">
+                <div className="text-center">
+                    <p className="text-red-500">Failed to load booking flow</p>
+                    <Button onClick={() => window.location.reload()} className="mt-4">
+                        Try Again
+                    </Button>
+                </div>
+            </div>
+        );
+    }
+
     if (currentQuestion === "final") {
         return <BookingFlowSummary selectedServices={selectedServices} onChange={handleChange} />;
     }
 
-    const currentQuestionData = bookingData[currentQuestion as keyof typeof bookingData];
-
+    const currentQuestionData = bookingData[currentQuestion];
 
     if (!currentQuestionData) {
-        return <div>Invalid question</div>;
+        return (
+            <div className="flex flex-col items-center pt-8 sm:pt-16 min-h-screen gap-4 w-full max-w-md mx-auto px-4">
+                <div className="text-center">
+                    <p className="text-red-500">Invalid question</p>
+                </div>
+            </div>
+        );
     }
 
     function handleChange(questionId: string) {
@@ -276,25 +139,23 @@ export default function BookingFlow() {
         setPreviousQuestions(newPreviousQuestions);
     }
 
-    const handleOptionClick = (option: Option) => {
-
+    const handleOptionClick = (option: OptionWithServices) => {
         const selectedOption: SelectedOption = {
             questionId: currentQuestion,
             optionTitle: option.optionTitle,
-            summaryTitle: option.summaryTitle,
-            description: option.description,
-            services: option.services,
-            next: option.next,
+            summaryTitle: option.optionTitle,
+            description: option.description || "",
+            services: option.services.map(service => service.id),
+            tag: option.tag || undefined,
+            next: option.nextQuestionId || "final",
         }
         setDirection(1);
         setPreviousQuestions([...previousQuestions, currentQuestion]);
         setSelectedServices([...selectedServices, selectedOption]);
-        setCurrentQuestion(option.next);
+        setCurrentQuestion(option.nextQuestionId || "final");
     }
 
-
     return <div className="flex flex-col items-center pt-8 sm:pt-16 min-h-screen gap-4 w-full max-w-md mx-auto px-4" style={{ overflow: 'hidden' }}>
-
         <AnimatePresence mode="wait" initial={false}>
             <motion.div
                 key={currentQuestion}
@@ -305,8 +166,8 @@ export default function BookingFlow() {
                 className="w-full flex flex-col gap-4"
             >
                 <h1 className="text-2xl font-bold text-center mb-2">{currentQuestionData.text}</h1>
-                {currentQuestionData.options.map((option: Option) => (
-                    <Card key={option.optionTitle} className={`w-full shadow-md relative border-2 transition-all duration-200
+                {currentQuestionData.options.map((option: OptionWithServices) => (
+                    <Card key={option.id} className={`w-full shadow-md relative border-2 transition-all duration-200
                         ${option.tag ? "border-primary border-3 bg-primary/10 dark:bg-primary/25" : ""}
                     `}
                     >
@@ -330,6 +191,5 @@ export default function BookingFlow() {
                 ))}
             </motion.div>
         </AnimatePresence>
-        <Button variant="outline" className="w-full cursor-pointer" disabled={previousQuestions.length === 0} onClick={() => handleChange(previousQuestions[previousQuestions.length - 1])}><ArrowLeftIcon className="w-4 h-4" /> Back</Button>
-    </div>;
+    </div>
 }

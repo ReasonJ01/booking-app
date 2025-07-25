@@ -13,11 +13,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authClient } from '@/lib/auth-client';
+import { usePrefetchBookingFlow } from '@/lib/queries';
 
 export function SignInForm() {
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState(false);
     const formRef = useRef<HTMLFormElement>(null);
+    const prefetchBookingFlow = usePrefetchBookingFlow();
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         // Wait for virtual keyboard to appear
@@ -44,6 +46,14 @@ export function SignInForm() {
 
             if (result.error) {
                 throw new Error(result.error.message);
+            }
+
+            // Prefetch booking flow data after successful login
+            try {
+                prefetchBookingFlow();
+            } catch (prefetchError) {
+                console.warn('Failed to prefetch booking flow data:', prefetchError);
+                // Don't block the login flow if prefetching fails
             }
 
             // Replace the current route to force a remount
