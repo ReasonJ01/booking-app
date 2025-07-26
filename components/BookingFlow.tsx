@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import BookingFlowSummary from "./BookingFlowSummary";
 import { InferSelectModel } from "drizzle-orm";
@@ -139,6 +139,16 @@ export default function BookingFlow() {
         setPreviousQuestions(newPreviousQuestions);
     }
 
+    // Back button logic
+    const handleBack = () => {
+        if (previousQuestions.length === 0) return;
+        const prev = previousQuestions[previousQuestions.length - 1];
+        setDirection(-1);
+        setCurrentQuestion(prev);
+        setPreviousQuestions(previousQuestions.slice(0, -1));
+        setSelectedServices(selectedServices.slice(0, -1));
+    };
+
     const handleOptionClick = (option: OptionWithServices) => {
         const selectedOption: SelectedOption = {
             questionId: currentQuestion,
@@ -159,9 +169,9 @@ export default function BookingFlow() {
         <AnimatePresence mode="wait" initial={false}>
             <motion.div
                 key={currentQuestion}
-                initial={{ opacity: 0, x: direction * 40 }}
+                initial={{ opacity: 0, x: direction > 0 ? 40 : -40 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction * -40 }}
+                exit={{ opacity: 0, x: direction > 0 ? -40 : 40 }}
                 transition={{ duration: 0.15, ease: "easeInOut" }}
                 className="w-full flex flex-col gap-4"
             >
@@ -189,6 +199,13 @@ export default function BookingFlow() {
                         </CardFooter>
                     </Card>
                 ))}
+                {/* Back Button below the options */}
+                {previousQuestions.length > 0 && (
+                    <Button variant="outline" className="mt-4 self-start w-full hover:text-foreground hover:cursor-pointer" onClick={handleBack}>
+                        <ArrowLeftIcon className="w-4 h-4 mr-2" />
+                        Back
+                    </Button>
+                )}
             </motion.div>
         </AnimatePresence>
     </div>
